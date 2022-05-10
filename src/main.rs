@@ -1,13 +1,21 @@
 use std::{io};
 
 fn main() {
-    //read_input - функция считыающая stdin
     let outputed:String = read_input();
+    let len_data:usize = outputed.chars().count()-1;
     println!("The text is: \n {} \n The len is: \n {}",
-        outputed, outputed.chars().count()-1 //why count is +1?
-);
-    let splited:Vec<&str> = spliter(outputed.as_str());
-    println!("Array is: {:?}",splited);
+        outputed, len_data //why count is +1?
+    );
+    if outputed.contains(" "){
+        let splited:Vec<&str> = token_spliter(outputed.as_str());
+        println!("Array is: {:?}",splited);
+
+    }
+    else {
+        let splited:Vec<&str> = spliter(outputed.as_str());
+        println!("Array is: {:?}",splited);
+    }
+    
 }
 
 fn read_input() -> String {
@@ -29,6 +37,11 @@ struct CharElement {
 
 fn spliter(text:&str)->Vec<&str>{
     let mut result:Vec<&str> = text.split("").collect();
+    return result
+}
+
+fn token_spliter(text:&str)->Vec<&str>{
+    let mut result:Vec<&str> = text.rsplit(" ").collect();
     return result
 }
 
