@@ -3,8 +3,10 @@ use std::{io};
 fn main() {
     let otputed:String = read_input();
     println!("The text is: \n {} \n The len is: \n {}",
-    otputed, otputed.chars().count()
+        otputed, otputed.chars().count()-1 //why count is +1?
     );
+    let splited:Vec<&str> = spliter(otputed.as_str());
+    println!("Array is: {:?}",splited);
 }
 
 fn read_input() -> String {
@@ -23,6 +25,8 @@ struct CharElement {
     count:u16
 }
 
-fn spliter(text:String){
 
+fn spliter(text:&str)->Vec<&str>{
+    let mut result:Vec<&str> = text.split("").collect();
+    return result
 }
